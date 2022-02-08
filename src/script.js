@@ -1,3 +1,6 @@
+let product=[];
+let f=0;
+
 function submitForm(){
 var val1=document.getElementById("p1").value;
 var val2=document.getElementById("p2").value;
@@ -21,11 +24,20 @@ return true;
 function store(val1,val2,val3){
 parse_val1=parseInt(val1);
 parse_val3=parseInt(val3);
-const myJSON = {"id":parse_val1,"name":val2,"price":parse_val3 };
-return myJSON; 
+for(let i=0;i<product.length;i++)
+{
+if(product[i].id==parse_val1)
+{
+return product;
+}
+}
+const myJSON={"id":parse_val1,"name":val2,"price":parse_val3 };
+product.push(myJSON);
+return product;
 }
 
 function display(result)
 {
-document.getElementById("tb2").innerHTML+='<tr><td>'+result["id"]+'</td><td>'+result["name"]+'</td><td>'+result["price"]+'</td></tr>';
+    for(let i=f;i<result.length;i++,f++)
+document.getElementById("tb2").innerHTML+='<tr><td>'+result[i].id+'</td><td>'+result[i].name+'</td><td>'+result[i].price+'</td></tr>';
 }
